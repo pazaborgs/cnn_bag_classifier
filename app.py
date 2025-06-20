@@ -1,10 +1,10 @@
-import streamlit as st
-import tensorflow as tf
 import io
-import PIL
 import numpy as np
 import pandas as pd
+import PIL
 import plotly.express as px
+import streamlit as st
+import tensorflow as tf
 from huggingface_hub import hf_hub_download
 
 
@@ -15,18 +15,15 @@ def load_model():
         filename="bag_class_optimized.tflite",
         repo_type="model"
     )
-
     interpreter = tf.lite.Interpreter(model_path=model_path)
     interpreter.allocate_tensors()
     return interpreter
 
 
-
-# Carregar e exibir imagem enviada pelo usuário
 def load_image():
     uploaded_file = st.file_uploader(
         'Arraste e solte uma imagem aqui ou clique para selecionar uma',
-        type = ['png', 'jpg', 'jpeg']
+        type=['png', 'jpg', 'jpeg']
     )
 
     if uploaded_file is not None:
@@ -34,13 +31,12 @@ def load_image():
         image = PIL.Image.open(io.BytesIO(image_data)).convert('RGB')
         st.image(image, caption='Imagem carregada', use_column_width=True)
 
-        image = image.resize((300, 300))  # Resize tamanho do modelo
+        image = image.resize((300, 300))  # Resize para o tamanho esperado pelo modelo
         image = np.array(image, dtype=np.float32) / 255.0
         image = np.expand_dims(image, axis=0)
 
         return image
 
-# Inferência do modelo
 
 def prev(interpreter, image):
     input_details = interpreter.get_input_details()
@@ -51,12 +47,11 @@ def prev(interpreter, image):
 
     output_data = interpreter.get_tensor(output_details[0]['index'])
 
-    # Defina aqui suas classes de sacolas
-    
     classes = ['Plastic Bag', 'Paper Bag', 'Garbage Bag']
-    df = pd.DataFrame()
-    df['classes'] = classes
-    df['probabilidades (%)'] = 100 * output_data[0]
+    df = pd.DataFrame({
+        'classes': classes,
+        'probabilidades (%)': 100 * output_data[0]
+    })
 
     fig = px.bar(
         df,
@@ -68,7 +63,6 @@ def prev(interpreter, image):
     )
     st.plotly_chart(fig)
 
-# Interface principal
 
 def main():
     st.set_page_config(
@@ -84,6 +78,6 @@ def main():
     if image is not None:
         prev(interpreter, image)
 
-# Executar o app
+
 if __name__ == '__main__':
     main()
