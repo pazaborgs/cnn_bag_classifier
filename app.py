@@ -29,7 +29,7 @@ def load_image():
     if uploaded_file is not None:
         image_data = uploaded_file.read()
         image = PIL.Image.open(io.BytesIO(image_data)).convert('RGB')
-        st.image(image, caption='Imagem carregada', use_column_width=True)
+        st.image(image, caption='Imagem carregada', width=300)
 
         image = image.resize((300, 300))  # Resize para o tamanho esperado pelo modelo
         image = np.array(image, dtype=np.float32) / 255.0
@@ -70,7 +70,7 @@ def main():
         page_icon='🛍️',
     )
 
-    st.write('# Classificador: Sacolas 🛍️')
+    st.write('# Classificador de Sacolas para Reciclagem Inteligênte 🛍️')
 
     interpreter = load_model()
     image = load_image()
