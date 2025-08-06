@@ -30,7 +30,7 @@ Características principais:
 
 Você pode acessar a aplicação online no Streamlit Cloud:
 
-👉 [Acesse o app aqui](INSIRA_O_LINK_DO_STREAMLIT_AQUI)
+👉 (Em manutenção...)
 
 
 ## Notebook do Colab
