@@ -30,7 +30,7 @@ Características principais:
 
 Você pode acessar a aplicação online no Streamlit Cloud:
 
-👉 (Em manutenção...)
+👉 [Link para acessar a aplicação](https://cnnbagclassifier-fsauitjhxdpkyvapdpavhn.streamlit.app/)
 
 
 ## Notebook do Colab
