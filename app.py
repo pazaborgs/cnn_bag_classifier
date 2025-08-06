@@ -11,7 +11,7 @@ from huggingface_hub import hf_hub_download
 @st.cache_resource
 def load_model():
     model_path = hf_hub_download(
-        repo_id="pazaborgs/bag-classifier",
+        repo_id="pazaborgs/bag_classifier",
         filename="bag_class_optimized.tflite",
         repo_type="model"
     )
