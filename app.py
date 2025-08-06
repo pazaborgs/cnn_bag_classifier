@@ -70,7 +70,7 @@ def main():
         page_icon='🛍️',
     )
 
-    st.write('# Classificador de Sacolas para Reciclagem Inteligênte 🛍️')
+    st.write('# Classificador de Sacolas para Reciclagem Inteligente 🛍️')
 
     interpreter = load_model()
     image = load_image()
