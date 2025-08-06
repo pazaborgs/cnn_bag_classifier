@@ -47,7 +47,7 @@ def prev(interpreter, image):
 
     output_data = interpreter.get_tensor(output_details[0]['index'])
 
-    classes = ['Plastic Bag', 'Paper Bag', 'Garbage Bag']
+    classes = ['Garbage Bag', 'Paper Bag', 'Plastic Bag']
     df = pd.DataFrame({
         'classes': classes,
         'probabilidades (%)': 100 * output_data[0]
